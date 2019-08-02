@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es" >
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../estilos/formato.css">
+    <link rel="stylesheet" href="../estilos/formularios.css">
+    <script src="../../controlador/formularios.js"></script>
+    <script>
+        /*
+            En esta funcion consulta la tasa mas actual desde la base de datos dependiendo de la quincena seleccionada en el input quincenas,
+            despues recalcula de cuantos abonos sera cada quincena
+        */
+        function actualizar_tasa()
+        {
+            var xhttp = new XMLHttpRequest();
+            /* Esta funcion sera llamada de manera asincrona cada vez que la variable xhttp.readyState cambie de valor */
+            xhttp.onreadystatechange = function()
+            {
+                /* Cuando de reciba unarespuesta de la pagina */
+                if( xhttp.readyState == 4 )
+                {
+                    /* Si la respuesta fue exitosa segun el protocolo http */
+                    if( xhttp.status == 200 )
+                    {
+                        /*
+                            Probamos si la respuesta es un arreglo de JSON's,
+                            Si se recibe un arreglo de JSON's quiere decir que es el resultado de una consulta
+                        */
+                        try
+                        {
+                            /* Si el arreglo contiene mas de 0 JSON's */
+                            if( JSON.parse( xhttp.responseText ).length > 0 )
+                            {
+                                /* Actualizamos el valor de tasa */
+                                document.getElementsByName("tasa")[0].valueAsNumber = JSON.parse( xhttp.responseText )[0]["tasa"];
+                                /* Dspues de tener la tasa actualizada actualizamos el abono */
+                                if( !isNaN( document.getElementsByName("valor_inicial")[0].valueAsNumber ) )
+                                {
+                                    document.getElementsByName("abono")[0].valueAsNumber =
+                                    (
+                                        (
+                                            document.getElementsByName("valor_inicial")[0].valueAsNumber +
+                                            (
+                                                document.getElementsByName("valor_inicial")[0].valueAsNumber *
+                                                (
+                                                    document.getElementsByName("tasa")[0].valueAsNumber *
+                                                    0.01
+                                                )
+                                            )
+                                        )
+                                        / parseInt( document.getElementsByName("quincenas")[0].value )
+                                    ).toFixed(2);
+                                }
+                                else
+                                {
+                                    document.getElementsByName("abono")[0].valueAsNumber = 0;
+                                }
+                            }
+                            /* Si era un arreglo de JSON's pero esta vacio la consulta no ecntro nada */
+                            else
+                            {
+                                alert("No se encontraron tasas");
+                            }
+                        }
+                        /* Si no es un arreglo de JSON's mostramos el retorno como un mensaje */
+                        catch( e )
+                        {
+                            alert( xhttp.responseText );
+                        }
+                    }
+                    /* Si la respuesta no fue exitosa se mostrara el codigo de error http */
+                    else
+                    {
+                        alert( "Error HTTP: " + xhttp.status );
+                    }
+                }
+            };
+            /*
+                Una vez escrita la funcionalidad del objeto xhttp le indicamos a que pagina que nos regresara las tasas
+            */
+            xhttp.open("POST", "../../modelo/tasas/consultar.php", true);
+            /*
+                Le decimos al objeto xhttp que usara el protocolo http llave=valor&
+            */
+            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            /*
+                Por ultimo hacemos el envio de la informacion a la pagina usando la cabezera llave=valor&
+            */
+            xhttp.send( "quincenas=" + document.getElementsByName("quincenas")[0].value + "&b_quincenas=true&tasa=0&b_tasa=false" );
+        }
+        /* Cuando la pagina carga sellama a esta funcion */
+        window.addEventListener
+        (
+            "load",
+            function()
+            {
+                actualizar_tasa();
+            }
+        );
+    </script>
+</head>
+<body>
+
+    <form action="../../modelo/vales/agregar.php" >
+
+        <div class="inputs">
+
+            <label>ID:</label>
+            <input type="text" spellcheck="false" name="id" required pattern="[a-zA-Z0-9]{1,50}" >
+
+            <label>RFC Distribuidor:</label>
+            <input type="text" spellcheck="false" name="rfc_distribuidor" required pattern="[a-zA-Z]{3,4}([0-9][1-9]|[1-9][0-9])(0[1-9]|1[0-2])(0[1-9]|(1|2)[0-9]|3[01])[a-zA-Z0-9]{3}" >
+
+            <label>RFC Cliente:</label>
+            <input type="text" spellcheck="false" name="rfc_cliente" required pattern="[a-zA-Z]{3,4}([0-9][1-9]|[1-9][0-9])(0[1-9]|1[0-2])(0[1-9]|(1|2)[0-9]|3[01])[a-zA-Z0-9]{3}" >
+
+            <label>Valor Inicial:</label>
+            <input type="number" name="valor_inicial" required min="0.01" max="1000000" step="0.01" oninput="actualizar_tasa();" >
+
+            <label>Quincenas:</label>
+            <select name="quincenas" onchange="actualizar_tasa();" >
+                <option value="4">4</option>
+                <option value="6">6</option>
+                <option value="8">8</option>
+                <option value="10">10</option>
+                <option value="12">12</option>
+            </select>
+
+            <label>Tasa:</label>
+            <input type="number" name="tasa" readonly value="0" >
+
+            <label>Abono:</label>
+            <input type="number" name="abono" readonly value="0" >
+
+        </div>
+
+        <div class="centrar">
+            <input type="submit" value="Agregar">
+            <input type="reset" value="Limpiar">
+        </div>
+
+    </form>
+    
+</body>
+</html>

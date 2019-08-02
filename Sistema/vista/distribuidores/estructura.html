@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es" >
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../estilos/formato.css">
+    <link rel="stylesheet" href="../estilos/iconos.css">
+    <link rel="stylesheet" href="../estilos/pestanas.css">
+    <script src="../scripts/pestana.js"></script>
+</head>
+<body>
+
+    <h2>Distribuidores</h2>
+
+    <div id="contenedor-seleccion-seccion" >
+        <button class="pestana-seleccionada" onclick='cambiar_seccion(this,document.getElementById("contenedor-seccion-agregar"));' ><i class="fas fa-folder-plus fa-fw"></i>Agregar</button>
+        <button onclick='cambiar_seccion(this,document.getElementById("contenedor-seccion-borrar"));' ><i class="fas fa-trash-alt fa-fw"></i>Borrar</button>
+        <button onclick='cambiar_seccion(this,document.getElementById("contenedor-seccion-cambiar"));' ><i class="fas fa-edit fa-fw"></i>Cambiar</button>
+        <button onclick='cambiar_seccion(this,document.getElementById("contenedor-seccion-consultar"));' ><i class="fas fa-search fa-fw"></i>Consultar</button>
+    </div>
+
+    <iframe id="contenedor-seccion-agregar" src="agregar.html" ></iframe>
+    <iframe id="contenedor-seccion-borrar" class="contenedor-deseleccionado" src="borrar.html" ></iframe>
+    <iframe id="contenedor-seccion-cambiar" class="contenedor-deseleccionado" src="cambiar.html" ></iframe>
+    <iframe id="contenedor-seccion-consultar" class="contenedor-deseleccionado" src="consultar.html" ></iframe>
+
+</body>
+</html>

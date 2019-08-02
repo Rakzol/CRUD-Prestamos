@@ -1,0 +1,53 @@
+[id|="contenedor-seccion"]
+{
+    float: left;
+    border: 0px;
+    width: 100%;
+    height: calc( 100vh - 104px );
+}
+button
+{  
+    float: left;
+    text-align: left;
+    border: 0px;
+    border-right: var( --borde-normal );
+    background-color: var( --fondo-normal );
+    padding: 12px 0px;
+    width: 250px;
+    outline: none;
+    font-size: 17px;
+}
+
+#contenedor-seleccion-seccion
+{
+    border-bottom: var( --borde-normal );
+    overflow: auto;
+}
+
+button:hover
+{
+    background-color: var( --fondo-seleccionado );
+    cursor: pointer;
+}
+i
+{
+    font-size: 25px;
+    margin: 0px 35px;
+    vertical-align: middle;
+}
+h2
+{
+    text-align: center;
+    font-weight: 400;
+    margin: 0px;
+    border-bottom: var( --borde-normal );
+    padding: 12px 0px;
+}
+.pestana-seleccionada
+{
+    background-color: var( --fondo-seleccionado );
+}
+.contenedor-deseleccionado
+{
+    display: none;
+}

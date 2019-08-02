@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es" >
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../estilos/formato.css">
+    <link rel="stylesheet" href="../estilos/formularios.css">
+    <script src="../../controlador/formularios.js"></script>
+</head>
+<body>
+
+    <form action="../../modelo/abonos/agregar.php" >
+
+        <div class="inputs_chicos" >
+            <label>ID Vale:</label>
+            <input type="text" spellcheck="false" required name="id_vale" pattern="[a-zA-Z0-9]{1,50}" >
+        </div>
+
+        <div class="centrar">
+            <input type="submit" value="Agregar">
+            <input type="reset" value="Limpiar">
+        </div>
+
+    </form>
+    
+</body>
+</html>

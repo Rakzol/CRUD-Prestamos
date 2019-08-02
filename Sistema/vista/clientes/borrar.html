@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es" >
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../estilos/formato.css">
+    <link rel="stylesheet" href="../estilos/formularios.css">
+    <script src="../../controlador/formularios.js"></script>
+</head>
+<body>
+
+    <form action="../../modelo/clientes/borrar.php" >
+
+        <div class="inputs_chicos" >
+            <label>RFC</label>
+            <input type="text" name="rfc" spellcheck="false" required pattern="[a-zA-Z]{3,4}([0-9][1-9]|[1-9][0-9])(0[1-9]|1[0-2])(0[1-9]|(1|2)[0-9]|3[01])[a-zA-Z0-9]{3}" >
+        </div>    
+
+        <div class="centrar" >
+            <input type="submit" value="Borrar">
+            <input type="reset" value="Limpiar">
+        </div>
+    
+    </form>
+
+</body>
+</html>

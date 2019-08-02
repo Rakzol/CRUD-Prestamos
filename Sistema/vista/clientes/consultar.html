@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="es" >
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../estilos/formato.css">
+    <link rel="stylesheet" href="../estilos/formularios.css">
+    <script src="../../controlador/formularios.js"></script>
+    <script src="../scripts/consulta.js"></script>
+</head>
+<body>
+
+    <form action="../../modelo/clientes/consultar.php" >
+
+        <h2>Filtros de consulta:</h2>
+
+        <div class="banderas" >
+
+            <label>RFC:</label>
+            <input type="checkbox" checked name="b_rfc" >
+
+            <label>Nombres:</label>
+            <input type="checkbox" checked name="b_nombres" >
+
+            <label>Apellido paterno:</label>
+            <input type="checkbox" checked name="b_apellido_paterno" >
+
+            <label>Apellido materno:</label>
+            <input type="checkbox" checked name="b_apellido_materno" >
+
+            <label>Teléfono:</label>
+            <input type="checkbox" checked name="b_telefono" >
+
+            <label>Correo electronico:</label>
+            <input type="checkbox" checked name="b_correo_electronico" >
+
+            <label>Numero casa:</label>
+            <input type="checkbox" checked name="b_numero_casa" >
+
+            <label>Calle:</label>
+            <input type="checkbox" checked name="b_calle" >
+
+            <label>Colonia:</label>
+            <input type="checkbox" checked name="b_colonia" >
+
+            <label>Ciudad:</label>
+            <input type="checkbox" checked name="b_ciudad" >
+
+            <label>Estado:</label>
+            <input type="checkbox" checked name="b_estado" >
+
+            <label>Sexo:</label>
+            <input type="checkbox" checked name="b_sexo" >
+
+            <label>Fecha de nacimiento:</label>
+            <input type="checkbox" checked name="b_fecha_nacimiento" >
+
+            <label>Moroso:</label>
+            <input type="checkbox" checked name="b_moroso" >
+
+            <label>Nombre de referencia:</label>
+            <input type="checkbox" checked name="b_nombre_referencia" >
+
+            <label>Teléfono de referencia:</label>
+            <input type="checkbox" checked name="b_telefono_referencia" >
+
+            <label>Dirección de referencia:</label>
+            <input type="checkbox" checked name="b_direccion_referencia" >
+
+        </div>
+
+        <div class="centrar" >
+            <input type="button" value="Marcar todo" onclick="cambiar_banderas(true);" >
+            <input type="button" value="Desmarcar todo" onclick="cambiar_banderas(false);" > 
+        </div>
+
+        <div class="inputs" >
+
+            <label>RFC:</label>
+            <input type="text" name="rfc" spellcheck="false" required pattern="[a-zA-Z0-9]{1,13}" >
+
+            <label>Nombres:</label>
+            <input type="text" name="nombres" spellcheck="false" required pattern="[a-zA-ZñáéíóúÑÁÉÍÓÚ ]{1,50}" >
+
+            <label>Apellido paterno:</label>
+            <input type="text" name="apellido_paterno" spellcheck="false" required pattern="[a-zA-ZñáéíóúÑÁÉÍÓÚ ]{1,50}" >
+
+            <label>Apellido materno:</label>
+            <input type="text" name="apellido_materno" spellcheck="false" required pattern="[a-zA-ZñáéíóúÑÁÉÍÓÚ ]{1,50}" >
+
+            <label>Teléfono:</label>
+            <input type="tel" name="telefono" required pattern="[0-9]{1,10}" >
+
+            <label>Correo electronico:</label>
+            <input type="text" name="correo_electronico" spellcheck="false" required pattern="[a-zA-Z0-9@.-_]{1,50}" >
+
+            <label>Numero casa:</label>
+            <input type="text" name="numero_casa" spellcheck="false" required pattern="[0-9]{1,5}" >
+
+            <label>Calle:</label>
+            <input type="text" name="calle" spellcheck="false" required pattern="[0-9a-zA-ZñáéíóúÑÁÉÍÓÚ ]{1,50}" >
+
+            <label>Colonia:</label>
+            <input type="text" name="colonia" spellcheck="false" required pattern="[0-9a-zA-ZñáéíóúÑÁÉÍÓÚ ]{1,50}" >
+
+            <label>Ciudad:</label>
+            <input type="text" name="ciudad" spellcheck="false" required pattern="[0-9a-zA-ZñáéíóúÑÁÉÍÓÚ ]{1,50}" >
+
+            <label>Estado:</label>
+            <input type="text" name="estado" spellcheck="false" required pattern="[0-9a-zA-ZñáéíóúÑÁÉÍÓÚ ]{1,50}" >
+
+            <label>Sexo:</label>
+            <select name="sexo">
+                <option value="masculino">Masculino</option>
+                <option value="femenino">Femenino</option>
+            </select>
+
+            <label>Fecha de nacimiento:</label>
+            <input type="date" name="fecha_nacimiento" required min="1930-01-01" max="2001-01-01" >
+
+            <label>Moroso:</label>
+            <input type="checkbox" name="moroso" >
+            
+            <label>Nombre de referencia:</label>
+            <input type="text" name="nombre_referencia" spellcheck="false" pattern="[a-zA-ZñáéíóúÑÁÉÍÓÚ ]{1,50}" >
+
+            <label>Teléfono de referencia:</label>
+            <input type="tel" name="telefono_referencia" pattern="[0-9]{1,10}" >
+
+            <label>Dirección de referencia:</label>
+            <input type="text" name="direccion_referencia" spellcheck="false" pattern="[0-9a-zA-ZñáéíóúÑÁÉÍÓÚ ]{1,50}" >
+
+        </div>
+
+        <div class="centrar" >
+            <input type="submit" value="Consultar">
+            <input type="reset" value="Limpiar" >
+        </div>
+    
+    </form>
+    
+    <form>
+
+        <h2>Resultados de consulta:</h2>
+    
+        <div class="centrar" >
+            <input type="button" value="Anterior" onclick='indice( document.getElementById("posicion").valueAsNumber - 1 );' >
+            <input id="posicion" style="width: 46px;" type="number" value="0" onchange="indice(this.valueAsNumber);" >
+            <label>/</label>
+            <label id="cantidad" >0</label>
+            <input type="button" value="Siguiente" onclick='indice( document.getElementById("posicion").valueAsNumber + 1 );' >
+        </div>
+    
+        <div class="inputs" >
+            <label>RFC:</label>
+            <input type="text" name="rfc" readonly >
+
+            <label>Nombres:</label>
+            <input type="text" name="nombres" readonly >
+
+            <label>Apellido paterno:</label>
+            <input type="text" name="apellido_paterno" readonly >
+
+            <label>Apellido materno:</label>
+            <input type="text" name="apellido_materno" readonly >
+
+            <label>Teléfono:</label>
+            <input type="tel" name="telefono" readonly >
+
+            <label>Correo electronico:</label>
+            <input type="email" name="correo_electronico" readonly >
+
+            <label>Numero casa:</label>
+            <input type="text" name="numero_casa" readonly >
+
+            <label>Calle:</label>
+            <input type="text" name="calle" readonly >
+
+            <label>Colonia:</label>
+            <input type="text" name="colonia" readonly >
+
+            <label>Ciudad:</label>
+            <input type="text" name="ciudad" readonly >
+
+            <label>Estado:</label>
+            <input type="text" name="estado" readonly >
+
+            <label>Sexo:</label>
+            <select name="sexo" disabled >
+                <option value="masculino">Masculino</option>
+                <option value="femenino">Femenino</option>
+            </select>
+
+            <label>Fecha de nacimiento:</label>
+            <input type="date" name="fecha_nacimiento" readonly >
+
+            <label>Moroso:</label>
+            <input type="checkbox" name="moroso" disabled >
+            
+            <label>Nombre de referencia:</label>
+            <input type="text" name="nombre_referencia" readonly >
+
+            <label>Teléfono de referencia:</label>
+            <input type="tel" name="telefono_referencia" readonly >
+
+            <label>Dirección de referencia:</label>
+            <input type="text" name="direccion_referencia" readonly >
+        </div>
+    
+        <!-- <div class="centrar" >
+            <input type="button" value="Borrar">
+            <input type="button" value="Cambiar">
+        </div> -->
+    
+    </form>
+
+</body>
+</html>

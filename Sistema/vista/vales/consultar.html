@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es" >
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../estilos/formato.css">
+    <link rel="stylesheet" href="../estilos/formularios.css">
+    <script src="../../controlador/formularios.js"></script>
+    <script src="../scripts/consulta.js"></script>
+</head>
+<body>
+
+    <form action="../../modelo/vales/consultar.php" >
+
+        <h2>Filtros de consulta:</h2>
+
+        <div class="banderas" >
+
+            <label>ID:</label>
+            <input type="checkbox" checked name="b_id" >
+
+            <label>RFC Distribuidor:</label>
+            <input type="checkbox" checked name="b_rfc_distribuidor" >
+
+            <label>RFC Cliente:</label>
+            <input type="checkbox" checked name="b_rfc_cliente" >
+
+            <label>Fecha:</label>
+            <input type="checkbox" checked name="b_fecha" >
+
+            <label>Pagado:</label>
+            <input type="checkbox" checked name="b_pagado" >
+
+            <label>Valor Inicial:</label>
+            <input type="checkbox" checked name="b_valor_inicial" >
+
+            <label>Valor Actual:</label>
+            <input type="checkbox" checked name="b_valor_actual" >
+
+            <label>Quincenas:</label>
+            <input type="checkbox" checked name="b_quincenas" >
+
+            <label>Tasa:</label>
+            <input type="checkbox" checked name="b_tasa" >
+
+            <label>Abono:</label>
+            <input type="checkbox" checked name="b_abono" >
+
+        </div>
+
+        <div class="centrar" >
+            <input type="button" value="Marcar todo" onclick="cambiar_banderas(true);" >
+            <input type="button" value="Desmarcar todo" onclick="cambiar_banderas(false);" > 
+        </div>
+
+        <div class="inputs" >
+
+            <label>ID:</label>
+            <input type="text" name="id" spellcheck="false" required pattern="[a-zA-Z0-9]{1,50}" >
+
+            <label>RFC Distribuidor:</label>
+            <input type="text" name="rfc_distribuidor" spellcheck="false" required pattern="[a-zA-Z0-9]{1,13}" >
+
+            <label>RFC Cliente:</label>
+            <input type="text" name="rfc_cliente" spellcheck="false" required pattern="[a-zA-Z0-9]{1,13}" >
+
+            <label>Fecha:</label>
+            <input type="date" name="fecha" required >
+
+            <label>Pagado:</label>
+            <input type="checkbox" name="pagado" >
+
+            <label>Valor Inicial:</label>
+            <input type="number" name="valor_inicial" required min="0.01" max="1000000" step="0.01" >
+
+            <label>Valor Actual:</label>
+            <input type="number" name="valor_actual" required min="0.01" max="1000000" step="0.01" >
+
+            <label>Quincenas:</label>
+            <select name="quincenas" >
+                <option value="4">4</option>
+                <option value="6">6</option>
+                <option value="8">8</option>
+                <option value="10">10</option>
+                <option value="12">12</option>
+            </select>
+
+            <label>Tasa:</label>
+            <input type="number" name="tasa" required step="0.01" min="0.01" max="100" >
+
+            <label>Abono:</label>
+            <input type="number" name="abono" required min="0.01" max="2000000" step="0.01" >
+
+        </div>
+
+        <div class="centrar" >
+            <input type="submit" value="Consultar">
+            <input type="reset" value="Limpiar" >
+        </div>
+    
+    </form>
+    
+    <form>
+
+        <h2>Resultados de consulta:</h2>
+    
+        <div class="centrar" >
+            <input type="button" value="Anterior" onclick='indice( document.getElementById("posicion").valueAsNumber - 1 );' >
+            <input id="posicion" style="width: 46px;" type="number" value="0" onchange="indice(this.valueAsNumber);" >
+            <label>/</label>
+            <label id="cantidad" >0</label>
+            <input type="button" value="Siguiente" onclick='indice( document.getElementById("posicion").valueAsNumber + 1 );' >
+        </div>
+    
+        <div class="inputs" >
+
+            <label>ID:</label>
+            <input type="text" name="id" readonly >
+    
+            <label>RFC Distribuidor:</label>
+            <input type="text" name="rfc_distribuidor" readonly >
+    
+            <label>RFC Cliente:</label>
+            <input type="text" name="rfc_cliente" readonly >
+    
+            <label>Fecha:</label>
+            <input type="date" name="fecha" readonly >
+    
+            <label>Pagado:</label>
+            <input type="checkbox" name="pagado" disabled >
+    
+            <label>Valor Inicial:</label>
+            <input type="number" name="valor_inicial" readonly >
+    
+            <label>Valor Actual:</label>
+            <input type="number" name="valor_actual" readonly >
+    
+            <label>Quincenas:</label>
+            <select name="quincenas" disabled >
+                <option value="4">4</option>
+                <option value="6">6</option>
+                <option value="8">8</option>
+                <option value="10">10</option>
+                <option value="12">12</option>
+            </select>
+    
+            <label>Tasa:</label>
+            <input type="number" name="tasa" readonly >
+
+            <label>Abono:</label>
+            <input type="number" name="abono" readonly >
+
+        </div>
+    
+    </form>
+
+</body>
+</html>

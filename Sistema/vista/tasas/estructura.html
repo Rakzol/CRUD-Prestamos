@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es" >
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../estilos/formato.css">
+    <link rel="stylesheet" href="../estilos/iconos.css">
+    <link rel="stylesheet" href="../estilos/pestanas.css">
+    <script src="../scripts/pestana.js"></script>
+</head>
+
+<body>
+
+    <h2>Tasas</h2>
+
+    <div id="contenedor-seleccion-seccion" >
+        <button class="pestana-seleccionada" onclick='cambiar_seccion(this,document.getElementById("contenedor-seccion-cambiar"));' ><i class="fas fa-edit fa-fw"></i>Cambiar</button>
+        <button onclick='cambiar_seccion(this,document.getElementById("contenedor-seccion-consultar"));' ><i class="fas fa-search fa-fw"></i>Consultar</button>
+    </div>
+
+    <iframe id="contenedor-seccion-cambiar" src="cambiar.html" ></iframe>
+    <iframe id="contenedor-seccion-consultar" class="contenedor-deseleccionado" src="consultar.html" ></iframe>
+
+</body>
+
+</html>

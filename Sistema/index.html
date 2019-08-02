@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es" >
+<head>
+    <meta charset="UTF-8">
+    <title>Panel de control</title>
+    <link rel="shortcut icon" href="vista/estilos/icono.png">
+    <link rel="stylesheet" href="vista/estilos/formato.css">
+    <link rel="stylesheet" href="vista/estilos/iconos.css">
+    <style>
+        [id|="contenedor"]
+        {
+            height: 100vh;
+            float: left;
+        }
+        [id|="contenedor-seccion"]
+        {
+            border: 0px;
+            width: calc( 100% - 251px );
+        }
+        #contenedor-seleccion-seccion
+        {
+            border-right: var( --borde-normal );
+            width: 250px;
+        }
+        button
+        {
+            text-align: left;
+            border: 0px;
+            border-bottom: var( --borde-normal );
+            background-color: var( --fondo-normal );
+            padding: 12px 0px;
+            width: 100%;
+            outline: none;
+            font-size: 17px;
+        }
+
+        button:hover
+        {
+            background-color: var( --fondo-seleccionado );
+            cursor: pointer;
+        }
+        i
+        {
+            font-size: 25px;
+            margin: 0px 35px;
+            vertical-align: middle;
+        }
+        h2
+        {
+            text-align: center;
+            font-weight: 400;
+            margin: 0px;
+            border-bottom: var( --borde-normal );
+            padding: 12px 0px;
+        }
+        .pestana-seleccionada
+        {
+            background-color: var( --fondo-seleccionado );
+        }
+        .contenedor-deseleccionado
+        {
+            display: none;
+        }
+    </style>
+    <script src="vista/scripts/pestana.js"></script>
+</head>
+<body>
+
+    <div id="contenedor-seleccion-seccion" >
+        <h2>Panel de control</h2>
+        <button class="pestana-seleccionada" onclick='cambiar_seccion(this,document.getElementById("contenedor-seccion-distribuidores"));' ><i class="fas fa-user-tie fa-fw"></i>Distribuidores</button>
+        <button onclick='cambiar_seccion(this,document.getElementById("contenedor-seccion-clientes"));' ><i class="fas fa-users fa-fw"></i>Clientes</button>
+        <button onclick='cambiar_seccion(this,document.getElementById("contenedor-seccion-vales"));' ><i class="fas fa-money-check-alt fa-fw"></i>Vales</button>
+        <button onclick='cambiar_seccion(this,document.getElementById("contenedor-seccion-abonos"));' ><i class="fas fa-hand-holding-usd fa-fw"></i>Abonos</button>
+        <button onclick='cambiar_seccion(this,document.getElementById("contenedor-seccion-tasas"));' ><i class="fas fa-balance-scale fa-fw"></i>Tasas</button>
+        <h2>Reportes</h2>
+        <button onclick='window.open("vista/reportes/distribuidores.html");' ><i class="fas fa-user-tie fa-fw"></i>Distribuidores</button>
+        <button onclick='window.open("vista/reportes/clientes.html");' ><i class="fas fa-users fa-fw"></i>Clientes</button>
+        <button onclick='window.open("vista/reportes/cobranza_distribuidores.html");' ><i class="fas fa-funnel-dollar fa-fw"></i>Cobranza</button>
+        <button onclick='window.open("vista/reportes/clientes_morosos.html");' ><i class="fas fa-comments-dollar fa-fw"></i>Morosos</button>
+    </div>
+
+    <iframe id="contenedor-seccion-distribuidores" src="vista/distribuidores/estructura.html" ></iframe>
+    <iframe id="contenedor-seccion-clientes" class="contenedor-deseleccionado" src="vista/clientes/estructura.html" ></iframe>
+    <iframe id="contenedor-seccion-vales" class="contenedor-deseleccionado" src="vista/vales/estructura.html" ></iframe>
+    <iframe id="contenedor-seccion-abonos" class="contenedor-deseleccionado" src="vista/abonos/estructura.html" ></iframe>
+    <iframe id="contenedor-seccion-tasas" class="contenedor-deseleccionado" src="vista/tasas/estructura.html" ></iframe>
+
+</body>
+</html>
+<!-- 1251 580 -->

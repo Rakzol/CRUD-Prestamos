@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es" >
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../estilos/formato.css">
+    <link rel="stylesheet" href="../estilos/formularios.css">
+    <script src="../../controlador/formularios.js"></script>
+</head>
+<body>
+
+    <form action="../../modelo/tasas/cambiar.php" >
+        
+        <div class="inputs_chicos" >
+            <label>Quincenas:</label>
+            <select name="quincenas" >
+                <option value="4">4</option>
+                <option value="6">6</option>
+                <option value="8">8</option>
+                <option value="10">10</option>
+                <option value="12">12</option>
+            </select>
+
+            <label>Tasa:</label>
+            <input type="number" name="tasa" required step="0.01" min="0.01" max="100" >
+        </div>
+
+        <div class="centrar">
+            <input type="submit" value="Cambiar">
+            <input type="reset" value="Limpiar">
+        </div>
+
+    </form>
+    
+</body>
+</html>

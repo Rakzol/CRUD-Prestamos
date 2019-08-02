@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es" >
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../estilos/formato.css">
+    <link rel="stylesheet" href="../estilos/formularios.css">
+    <script src="../../controlador/formularios.js"></script>
+    <script src="../scripts/consulta.js"></script>
+</head>
+<body>
+
+    <form action="../../modelo/abonos/consultar.php" >
+
+        <h2>Filtros de consulta:</h2>
+
+        <div class="inputs_chicos" >
+
+            <label>ID Vale:</label>
+            <input type="checkbox" checked name="b_id_vale" >
+
+            <label>Fecha:</label>
+            <input type="checkbox" checked name="b_fecha" >
+
+        </div>
+
+        <div class="centrar" >
+            <input type="button" value="Marcar todo" onclick="cambiar_banderas(true);" >
+            <input type="button" value="Desmarcar todo" onclick="cambiar_banderas(false);" > 
+        </div>
+
+        <div class="inputs_chicos" >
+
+            <label>ID Vale:</label>
+            <input type="text" name="id_vale" spellcheck="false" required pattern="[a-zA-Z0-9]{1,50}" >
+
+            <label>Fecha:</label>
+            <input type="date" name="fecha" required >
+
+        </div>
+
+        <div class="centrar" >
+            <input type="submit" value="Consultar">
+            <input type="reset" value="Limpiar" >
+        </div>
+    
+    </form>
+    
+    <form>
+
+        <h2>Resultados de consulta:</h2>
+    
+        <div class="centrar" >
+            <input type="button" value="Anterior" onclick='indice( document.getElementById("posicion").valueAsNumber - 1 );' >
+            <input id="posicion" style="width: 46px;" type="number" value="0" onchange="indice(this.valueAsNumber);" >
+            <label>/</label>
+            <label id="cantidad" >0</label>
+            <input type="button" value="Siguiente" onclick='indice( document.getElementById("posicion").valueAsNumber + 1 );' >
+        </div>
+    
+        <div class="inputs_chicos" >
+
+            <label>ID Vale:</label>
+            <input type="text" name="id_vale" readonly >
+    
+            <label>Fecha:</label>
+            <input type="date" name="fecha" readonly >
+
+        </div>
+    
+    </form>
+
+</body>
+</html>

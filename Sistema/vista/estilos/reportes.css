@@ -1,0 +1,59 @@
+h1, h2, h3, p
+{
+    white-space: nowrap;
+}
+#tabla
+{
+    display: grid;
+    grid-template-columns: repeat( 4, 1fr );
+    grid-gap: 2px;
+    /* centrado en x, y */
+    align-items: center;
+    text-align: center;
+}
+#nombre_empresa
+{
+    grid-column: 2 / 4;
+}
+#titulo
+{
+    grid-column: 1 / 5;
+}
+#imagen
+{
+    width: 150px;
+    height: 100px;
+    border-radius: 10px;
+}
+#nombre_empresa > h1
+{
+    margin: 0px;
+    font-size: 50px;
+}
+#fecha > h2
+{
+    margin: 0px;
+    font-weight: 400;
+}
+.cabecera > h3
+{
+    margin: 0px;
+    font-weight: 400;
+    padding: 4px;
+    font-size: 20px;
+}
+.cabecera
+{
+    background-color: #5d99c6;
+}
+.fila > p
+{
+    margin: 0px;
+    padding: 4px;
+    font-size: 17px;
+    text-align: left;
+}
+.fila
+{
+    background-color: #90caf9;
+}

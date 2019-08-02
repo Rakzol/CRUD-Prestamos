@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es" >
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../estilos/formato.css">
+    <link rel="stylesheet" href="../estilos/formularios.css">
+    <script src="../../controlador/formularios.js"></script>
+    <script src="../scripts/consulta.js"></script>
+</head>
+<body>
+
+    <form action="../../modelo/tasas/consultar.php" >
+
+        <h2>Filtros de consulta:</h2>
+
+        <div class="inputs_chicos" >
+
+            <label>Quincenas:</label>
+            <input type="checkbox" checked name="b_quincenas" >
+
+            <label>Tasa:</label>
+            <input type="checkbox" checked name="b_tasa" >
+
+        </div>
+
+        <div class="centrar" >
+            <input type="button" value="Marcar todo" onclick="cambiar_banderas(true);" >
+            <input type="button" value="Desmarcar todo" onclick="cambiar_banderas(false);" > 
+        </div>
+
+        <div class="inputs_chicos" >
+
+            <label>Quincenas:</label>
+            <select name="quincenas" >
+                <option value="4">4</option>
+                <option value="6">6</option>
+                <option value="8">8</option>
+                <option value="10">10</option>
+                <option value="12">12</option>
+            </select>
+    
+            <label>Tasa:</label>
+            <input type="number" name="tasa" required step="0.01" min="0.01" max="100" >
+
+        </div>
+
+        <div class="centrar" >
+            <input type="submit" value="Consultar">
+            <input type="reset" value="Limpiar" >
+        </div>
+    
+    </form>
+    
+    <form>
+
+        <h2>Resultados de consulta:</h2>
+    
+        <div class="centrar" >
+            <input type="button" value="Anterior" onclick='indice( document.getElementById("posicion").valueAsNumber - 1 );' >
+            <input id="posicion" style="width: 46px;" type="number" value="0" onchange="indice(this.valueAsNumber);" >
+            <label>/</label>
+            <label id="cantidad" >0</label>
+            <input type="button" value="Siguiente" onclick='indice( document.getElementById("posicion").valueAsNumber + 1 );' >
+        </div>
+    
+        <div class="inputs_chicos" >
+
+            <label>Quincenas:</label>
+            <select name="quincenas" disabled >
+                <option value="4">4</option>
+                <option value="6">6</option>
+                <option value="8">8</option>
+                <option value="10">10</option>
+                <option value="12">12</option>
+            </select>
+    
+            <label>Tasa:</label>
+            <input type="number" name="tasa" readonly >
+
+        </div>
+    
+    </form>
+
+</body>
+</html>
